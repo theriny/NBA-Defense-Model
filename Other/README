@@ -1,7 +1,0 @@
-Data Dictionary
-
-nba_player_stats.csv --> All player stats (defense and offense) that contain the player sums and averages.Data is grouped by season, player, and team.
-
-data_nodupl.csv --> This is the original data with duplicate rows removed.
-
-nba_data_cleaned.csv --> a processed version of data_nodupl where values such as "Inactives" have been converted to an integer rather than the names of the inactive players.
