@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Win Probability Predictor</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 50px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .form-section {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .company-logo, .nba-graphic {
+            max-width: 150px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Company Branding and NBA Graphic -->
+    <div class="text-center mb-4">
+        <img src="{{ url_for('static', filename='images/company_logo.png') }}" alt="Company Logo" class="company-logo">
+        <img src="{{ url_for('static', filename='images/nba_logo.png') }}" alt="NBA Graphic" class="nba-graphic">
+    </div>
+
+    <!-- Description of the Model -->
+    <div class="text-center mb-4">
+        <h1>NBA Win Probability Predictor</h1>
+        <p>Enter the offensive statistics for your NBA team, and our AI model will predict the probability of your team winning the game. This model analyzes key offensive metrics and provides an estimate of your team's chances of winning or losing.</p>
+    </div>
+
+    <!-- Prediction Form -->
+    <div class="form-section">
+        <form method="POST">
+            <div class="form-group">
+                <label for="input1">Input 1 (Field Goals):</label>
+                <input type="text" id="input1" name="input1" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="input2">Input 2 (3-Point Field Goals):</label>
+                <input type="text" id="input2" name="input2" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="input3">Input 3 (Free Throws):</label>
+                <input type="text" id="input3" name="input3" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="input4">Input 4 (Offensive Rebounds):</label>
+                <input type="text" id="input4" name="input4" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="input5">Input 5 (Assists):</label>
+                <input type="text" id="input5" name="input5" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="input6">Input 6 (Points):</label>
+                <input type="text" id="input6" name="input6" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Predict</button>
+        </form>
+    </div>
+
+    <!-- Prediction Result -->
+    <div class="text-center mt-4">
+        {% if result %}
+            <h2>{{ result }}</h2>
+        {% elif error %}
+            <h2 class="text-danger">{{ error }}</h2>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
