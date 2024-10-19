@@ -343,7 +343,7 @@ ruamel.yaml.clib @ file:///C:/b/abs_5fk8zi6n09/croot/ruamel.yaml.clib_1727769837
 s3fs @ file:///C:/b/abs_ddtjx92ddb/croot/s3fs_1724924140381/work
 schedule==1.2.1
 scikit-image==0.18.3
-scikit-learn==0.24.2
+scikit-learn @ file:///C:/b/abs_aajc9f7v6r/croot/scikit-learn_1722067652693/work/dist/scikit_learn-1.5.1-cp39-cp39-win_amd64.whl#sha256=c9648dc9e29bcf3f8c05d65be46d6b9252cf25dc12f2d981fd8e8feff3f6e7cd
 scikit-learn-intelex==2021.20210714.120553
 scipy @ file:///C:/ci/scipy_1630606917240/work
 Scrapy @ file:///C:/b/abs_b407wrcuij/croot/scrapy_1708714755460/work
