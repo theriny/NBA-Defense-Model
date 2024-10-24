@@ -31,16 +31,22 @@ def predict():
             #print(input_data)
 
             # Make the prediction (will return a vector with 2 values (prob of losing, prob of winning))
-            prediction = model.predict_proba(inputs)
+            print(inputs)
+            prediction = model.predict_proba(np.array(inputs).reshape(-1,6))
 
             #get the lose/win probabilities
             prob_lose = np.round(prediction[0][0]*100)
             prob_win = np.round(prediction[0][1]*100)
 
-            result = f"Given the offensive stats you have provided, your team has a {prob_win}% chance of winning and a {prob_lose}% chance of losing."
+            print(f"Inputs: {inputs}")
+            print(f"Prediction: {prediction}")
+            print(f"Prob Lose: {prob_lose}, Prob Win: {prob_win}")
+
+
+            #result = f"Given the offensive stats you have provided, your team has a {prob_win}% chance of winning and a {prob_lose}% chance of losing."
 
             # Return prediction result to the template
-            return render_template("index.html", result=result)
+            return render_template("index.html", prob_lose=prob_lose, prob_win=prob_win)
 
         except ValueError:
             return render_template("index.html", error="Please enter valid float numbers.")

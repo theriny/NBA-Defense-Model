@@ -23,50 +23,6 @@
         .company-logo, .nba-graphic {
             max-width: 150px;
         }
-
-        .result-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .box {
-            width: 100px;
-            height: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 10px;
-            animation: growBox 1s ease-out;
-        }
-
-        .box-red {
-            background-color: red;
-        }
-
-        .box-green {
-            background-color: green;
-        }
-
-        @keyframes growBox {
-            from {
-                transform: scale(0);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .result-text {
-            font-size: 24px;
-            margin-bottom: 30px;
-        }
     </style>
 </head>
 <body>
@@ -81,7 +37,7 @@
     <!-- Description of the Model -->
     <div class="text-center mb-4">
         <h1>NBA Win Probability Predictor</h1>
-        <p> Our advanced AI model analyzes key offensive metrics to estimate your team's likelihood of winning or losing. Simply enter the final offensive stats from your favorite NBA team’s recent game, and see how well our model predicts the outcome.</p>
+        <p>Curious if your team will push hard for the remaining minutes of the game to get the dub? Enter your team's offensive stats, and our AI model will predict the probability of your team winning the game. This model analyzes key offensive metrics and provides an estimate of your team's chances of winning or losing.</p>
     </div>
 
     <!-- Prediction Form -->
@@ -117,25 +73,12 @@
 
     <!-- Prediction Result -->
     <div class="text-center mt-4">
-        {% if prob_lose is not none and prob_win is not none %}
-            <h2 class="result-text">Given the offensive stats you have provided:</h2>
-    
-            <div class="result-section">
-                <!-- Red Box (No/Probability of Losing) -->
-                <h3>Probability of Losing</h3> <!-- Add a label for the red box -->
-                <div class="box box-red" id="no-probability">
-                    {{ prob_lose }}%
-                </div>
-                <!-- Green Box (Yes/Probability of Winning) -->
-                <h3>Probability of Winning</h3> <!-- Add a label for the green box -->
-                <div class="box box-green" id="yes-probability">
-                    {{ prob_win }}%
-                </div>
-            </div>
+        {% if result %}
+            <h2>{{ result }}</h2>
         {% elif error %}
             <h2 class="text-danger">{{ error }}</h2>
         {% endif %}
-    </div>    
+    </div>
 </div>
 
 <!-- Bootstrap JS -->
