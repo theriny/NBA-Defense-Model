@@ -8,10 +8,10 @@ from sklearn.preprocessing import MinMaxScaler
 app = Flask(__name__)
 
 # Load the trained model
-model = joblib.load('offensive_stats_model.pkl')
+model = joblib.load('offensive_stats_unscl_model.pkl')
 
 # Normalize quantitative fields using Min-Max scaling
-scaler = MinMaxScaler()
+#scaler = MinMaxScaler()
 
 # Route to handle the form and prediction
 @app.route("/", methods=["GET", "POST"])
@@ -27,10 +27,11 @@ def predict():
                       float(request.form['input6'])]
 
             # Convert input to a numpy array and reshape for the model
-            input_data = np.round(scaler.fit_transform(np.array(inputs).reshape(1, -1)).reshape(1,6),2)
+            #input_data = np.round(scaler.fit_transform(np.array(inputs).reshape(1, -1)).reshape(1,6),2)
+            #print(input_data)
 
             # Make the prediction (will return a vector with 2 values (prob of losing, prob of winning))
-            prediction = model.predict_proba(input_data)
+            prediction = model.predict_proba(inputs)
 
             #get the lose/win probabilities
             prob_lose = np.round(prediction[0][0]*100)
