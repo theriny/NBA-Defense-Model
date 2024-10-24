@@ -86,50 +86,55 @@
 
     <!-- Prediction Form -->
     <div class="form-section">
-        <form method="POST">
+        <form method="POST" id="prediction-form">
             <div class="form-group">
                 <label for="input1">Field Goals:</label>
-                <input type="text" id="input1" name="input1" class="form-control" required>
+                <input type="text" id="input1" name="input1" class="form-control" value="{{ request.form.get('input1', '') }}" required>
             </div>
             <div class="form-group">
                 <label for="input2">3-Point Field Goals:</label>
-                <input type="text" id="input2" name="input2" class="form-control" required>
+                <input type="text" id="input2" name="input2" class="form-control" value="{{ request.form.get('input2', '') }}" required>
             </div>
             <div class="form-group">
                 <label for="input3">Free Throws:</label>
-                <input type="text" id="input3" name="input3" class="form-control" required>
+                <input type="text" id="input3" name="input3" class="form-control" value="{{ request.form.get('input3', '') }}" required>
             </div>
             <div class="form-group">
                 <label for="input4">Offensive Rebounds:</label>
-                <input type="text" id="input4" name="input4" class="form-control" required>
+                <input type="text" id="input4" name="input4" class="form-control" value="{{ request.form.get('input4', '') }}" required>
             </div>
             <div class="form-group">
                 <label for="input5">Assists:</label>
-                <input type="text" id="input5" name="input5" class="form-control" required>
+                <input type="text" id="input5" name="input5" class="form-control" value="{{ request.form.get('input5', '') }}" required>
             </div>
             <div class="form-group">
                 <label for="input6">Points:</label>
-                <input type="text" id="input6" name="input6" class="form-control" required>
+                <input type="text" id="input6" name="input6" class="form-control" value="{{ request.form.get('input6', '') }}" required>
             </div>
+
+            <!-- Submit and Reset Buttons -->
             <button type="submit" class="btn btn-primary btn-block">Predict</button>
+            <button type="reset" class="btn btn-secondary btn-block" id="reset-button">Reset</button>
         </form>
     </div>
-
+    
     <!-- Prediction Result -->
     <div class="text-center mt-4">
         {% if prob_lose is not none and prob_win is not none %}
             <h2 class="result-text">Given the offensive stats you have provided:</h2>
     
             <div class="result-section">
-                <!-- Red Box (No/Probability of Losing) -->
-                <h3>Probability of Losing</h3> <!-- Add a label for the red box -->
-                <div class="box box-red" id="no-probability">
-                    {{ prob_lose }}%
+                <div>
+                    <h3>Probability of Losing</h3>
+                    <div class="box box-red" id="no-probability">
+                        {{ prob_lose }}%
+                    </div>
                 </div>
-                <!-- Green Box (Yes/Probability of Winning) -->
-                <h3>Probability of Winning</h3> <!-- Add a label for the green box -->
-                <div class="box box-green" id="yes-probability">
-                    {{ prob_win }}%
+                <div>
+                    <h3>Probability of Winning</h3>
+                    <div class="box box-green" id="yes-probability">
+                        {{ prob_win }}%
+                    </div>
                 </div>
             </div>
         {% elif error %}
@@ -141,5 +146,16 @@
 <!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JavaScript to reset form and result boxes -->
+<script>
+    document.getElementById("reset-button").addEventListener("click", function() {
+        document.getElementById("prediction-form").reset();
+        // Clear the result boxes
+        document.getElementById('no-probability').textContent = '';
+        document.getElementById('yes-probability').textContent = '';
+    });
+</script>
+
 </body>
 </html>
