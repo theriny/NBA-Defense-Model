@@ -9,10 +9,11 @@ itsdangerous==2.2.0
 Jinja2==3.1.4
 joblib==1.4.2
 MarkupSafe==3.0.1
+numpy==2.0.2
 packaging==24.1
 scikit-learn==1.5.2
+scipy==1.13.1
 threadpoolctl==3.5.0
 Werkzeug==3.0.4
 zipp==3.20.2
-numpy==1.24.4
-scipy==1.10.1
+
