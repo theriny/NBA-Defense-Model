@@ -2,6 +2,9 @@ from flask import Flask, render_template, request
 import joblib
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
+import sys
+print("🧪 Python version:", sys.version)
+
 
 # Initialize Flask app
 app = Flask(__name__)
