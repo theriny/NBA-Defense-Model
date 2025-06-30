@@ -1,0 +1,24 @@
+# Use an official Python image with system packages
+FROM python:3.11-slim
+
+# Install system dependencies (includes gfortran)
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    gfortran \
+    && apt-get clean
+
+# Set work directory
+WORKDIR /app
+
+# Copy files
+COPY . /app
+
+# Install Python dependencies
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose the port Flask runs on
+EXPOSE 8000
+
+# Command to run the app with gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
